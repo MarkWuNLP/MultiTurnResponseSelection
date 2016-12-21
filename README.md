@@ -13,4 +13,6 @@ This is our test set for retrieval-based chatbot under multi-turn conversation s
 | Average turn per session | 5.95    | 
 | Average Word per utterance | 17.17    | 
 
-
+please cite our paper if you use the data set 
+## Reference
+Wu, Yu, et al. "Sequential Match Network: A New Architecture for Multi-turn Response Selection in Retrieval-based Chatbots." arXiv preprint arXiv:1612.01627 (2016).
