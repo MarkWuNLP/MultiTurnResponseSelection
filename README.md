@@ -2,7 +2,7 @@
 
 ## Data set
 We release Douban Conversation Corpus, comprising a training data set, a development set and a test set for retrieval based chatbot. The statistics of Douban Conversation Corpus are shown in the following table. 
-<center>
+
 |      |Train|Val| Test         | 
 | ------------- |:-------------:|:-------------:|:-------------:|
 | session-response pairs  | 1m|50k| 10k |
@@ -12,7 +12,7 @@ We release Douban Conversation Corpus, comprising a training data set, a develop
 | Max ture per session | 98|91|45    | 
 | Average turn per session | 6.69|6.75|5.95    | 
 | Average Word per utterance | 18.56|18.50|20.74   | 
-</center>
+
 
 The test data contains 1000 dialogue context, and for each context we create 10 responses as candidates. We recruited three labelers to judge if a candidate is a proper response to the session. A proper response means the response can naturally reply to the message given the context. Each pair received three labels and the majority of the labels was taken as the final decision.
 
