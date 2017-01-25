@@ -6,8 +6,8 @@ import datetime
 
 import theano
 import theano.tensor as T
-from theano.tensor.signal import downsample
 from theano.tensor.nnet import conv
+
 def ReLU(x):
     y = T.maximum(0.0, x)
     return(y)
@@ -75,8 +75,8 @@ class QALeNetConvPoolLayer(object):
         rconv_out = conv.conv2d(input=rinp, filters=self.W, filter_shape = filter_shape)
         self.lconv_out_tanh = ReLU(lconv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
         self.rconv_out_tanh = ReLU(rconv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
-        self.loutput = downsample.max_pool_2d(input=self.lconv_out_tanh, ds=self.poolsize, ignore_border=True, mode="max")
-        self.routput = downsample.max_pool_2d(input=self.rconv_out_tanh, ds=self.poolsize, ignore_border=True, mode="max")
+        self.loutput = theano.tensor.signal.pool.pool_2d(input=self.lconv_out_tanh, ds=self.poolsize, ignore_border=True, mode="max")
+        self.routput = theano.tensor.signal.pool.pool_2d(input=self.rconv_out_tanh, ds=self.poolsize, ignore_border=True, mode="max")
         self.params = [self.W, self.b]
 
     def predict(self, lnew_data, rnew_data):
@@ -87,8 +87,8 @@ class QALeNetConvPoolLayer(object):
         rconv_out = conv.conv2d(input=rnew_data, filters=self.W)
         lconv_out_tanh = T.tanh(lconv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
         rconv_out_tanh = T.tanh(rconv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
-        loutput = downsample.max_pool_2d(input=lconv_out_tanh, ds=self.poolsize, ignore_border=True, mode="max")
-        routput = downsample.max_pool_2d(input=rconv_out_tanh, ds=self.poolsize, ignore_border=True, mode="max")
+        loutput = theano.tensor.signal.pool.pool_2d(input=lconv_out_tanh, ds=self.poolsize, ignore_border=True, mode="max")
+        routput = theano.tensor.signal.pool.pool_2d(input=rconv_out_tanh, ds=self.poolsize, ignore_border=True, mode="max")
         return loutput, routput
 
 class LeNetConvPoolLayer(object):
@@ -145,12 +145,12 @@ class LeNetConvPoolLayer(object):
         conv_out = conv.conv2d(input=input, filters=self.W,filter_shape=self.filter_shape, image_shape=self.image_shape)
         if self.non_linear=="tanh":
             conv_out_tanh = T.tanh(conv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
-            self.output = downsample.max_pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True,mode="max")
+            self.output = theano.tensor.signal.pool.pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True,mode="max")
         elif self.non_linear=="relu":
             conv_out_tanh = ReLU(conv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
-            self.output = downsample.max_pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True,mode="max")
+            self.output = theano.tensor.signal.pool.pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True,mode="max")
         else:
-            pooled_out = downsample.max_pool_2d(input=conv_out, ds=self.poolsize, ignore_border=True,mode="max")
+            pooled_out = theano.tensor.signal.pool.pool_2d(input=conv_out, ds=self.poolsize, ignore_border=True,mode="max")
             self.output = pooled_out + self.b.dimshuffle('x', 0, 'x', 'x')
         self.params = [self.W, self.b]
 
@@ -162,12 +162,12 @@ class LeNetConvPoolLayer(object):
         conv_out = conv.conv2d(input=new_data, filters=self.W, filter_shape=self.filter_shape, image_shape=img_shape)
         if self.non_linear=="tanh":
             conv_out_tanh = T.tanh(conv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
-            output = downsample.max_pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True)
+            output = theano.tensor.signal.pool.pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True)
         if self.non_linear=="relu":
             conv_out_tanh = ReLU(conv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
-            output = downsample.max_pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True)
+            output =theano.tensor.signal.pool.pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True)
         else:
-            pooled_out = downsample.max_pool_2d(input=conv_out, ds=self.poolsize, ignore_border=True)
+            pooled_out = theano.tensor.signal.pool.pool_2d(input=conv_out, ds=self.poolsize, ignore_border=True)
             output = pooled_out + self.b.dimshuffle('x', 0, 'x', 'x')
         return output
 
@@ -227,12 +227,12 @@ class LeNetConvPoolLayer2(object):
         conv_out = conv.conv2d(input=input, filters=self.W,filter_shape=self.filter_shape, image_shape=self.image_shape)
         if self.non_linear=="tanh":
             conv_out_tanh = T.tanh(conv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
-            self.output = downsample.max_pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True,mode="max")
+            self.output = theano.tensor.signal.pool.pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True,mode="max")
         elif self.non_linear=="relu":
             conv_out_tanh = ReLU(conv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
-            self.output = downsample.max_pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True,mode="max")
+            self.output =theano.tensor.signal.pool.pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True,mode="max")
         else:
-            pooled_out = downsample.max_pool_2d(input=conv_out, ds=self.poolsize, ignore_border=True,mode="max")
+            pooled_out = theano.tensor.signal.pool.pool_2d(input=conv_out, ds=self.poolsize, ignore_border=True,mode="max")
             self.output = pooled_out + self.b.dimshuffle('x', 0, 'x', 'x')
         return self.output
 
@@ -245,11 +245,11 @@ class LeNetConvPoolLayer2(object):
         conv_out = conv.conv2d(input=new_data, filters=self.W, filter_shape=self.filter_shape, image_shape=img_shape)
         if self.non_linear=="tanh":
             conv_out_tanh = T.tanh(conv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
-            output = downsample.max_pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True)
+            output = theano.tensor.signal.pool.pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True)
         if self.non_linear=="relu":
             conv_out_tanh = ReLU(conv_out + self.b.dimshuffle('x', 0, 'x', 'x'))
-            output = downsample.max_pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True)
+            output = theano.tensor.signal.pool.pool_2d(input=conv_out_tanh, ds=self.poolsize, ignore_border=True)
         else:
-            pooled_out = downsample.max_pool_2d(input=conv_out, ds=self.poolsize, ignore_border=True)
+            pooled_out = theano.tensor.signal.pool.pool_2d(input=conv_out, ds=self.poolsize, ignore_border=True)
             output = pooled_out + self.b.dimshuffle('x', 0, 'x', 'x')
         return output
