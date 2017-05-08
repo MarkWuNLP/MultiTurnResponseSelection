@@ -28,4 +28,5 @@ We also release our source code to help others reproduce our result. The code ha
 
 ## Reference
 Please cite our paper if you use the data or code in this repos.
+
 Wu, Yu, et al. "Sequential Matching Network: A New Archtechture for Multi-turn Response Selection in Retrieval-based Chatbots." ACL. 2017.
