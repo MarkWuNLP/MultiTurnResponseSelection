@@ -19,5 +19,13 @@ The test data contains 1000 dialogue context, and for each context we create 10 
 <br>
 As far as we known, this is the first human-labeled test set for retrieval-based chatbots. Anyone can download the test set here. We upload the training and dev set at https://www.dropbox.com/s/eo5zegg1k83uqaj/DoubanConversaionCorpus.zip?dl=0
 
+Data template
+label \t conversation utterances (splited by \t) \t response
+
+
 ## Source Code
-We also release our source code to help others reproduce our result. The code has been tested under Ubuntu 14.04 with python 2.7. The authors are busy polishing the code style in order to change the parameters more convenient.
+We also release our source code to help others reproduce our result. The code has been tested under Ubuntu 14.04 with python 2.7. 
+
+## Reference
+Please cite our paper if you use the data or code in this repos.
+Wu, Yu, et al. "Sequential Matching Network: A New Archtechture for Multi-turn Response Selection in Retrieval-based Chatbots." ACL. 2017.
