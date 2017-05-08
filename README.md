@@ -19,7 +19,7 @@ The test data contains 1000 dialogue context, and for each context we create 10 
 <br>
 As far as we known, this is the first human-labeled test set for retrieval-based chatbots. Anyone can download the test set here. We upload the training and dev set at https://www.dropbox.com/s/eo5zegg1k83uqaj/DoubanConversaionCorpus.zip?dl=0
 
-Data template
+## Data template
 label \t conversation utterances (splited by \t) \t response
 
 
