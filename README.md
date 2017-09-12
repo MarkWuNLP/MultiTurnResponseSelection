@@ -26,6 +26,8 @@ label \t conversation utterances (splited by \t) \t response
 ## Source Code
 We also release our source code to help others reproduce our result. The code has been tested under Ubuntu 14.04 with python 2.7. 
 
+Please first run preprocess.py and edit the code with the correct path, and it will give you a .bin file. After that, please run SMN_Last.py with the generated .bin file, and the training loss will be printed on the screen. If you set the train_flag = False, it will give your predicted score with your model. 
+
 ## Reference
 Please cite our paper if you use the data or code in this repos.
 
