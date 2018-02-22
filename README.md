@@ -28,6 +28,21 @@ We also release our source code to help others reproduce our result. The code ha
 
 Please first run preprocess.py and edit the code with the correct path, and it will give you a .bin file. After that, please run SMN_Last.py with the generated .bin file, and the training loss will be printed on the screen. If you set the train_flag = False, it will give your predicted score with your model. 
 
+Some tips:
+
+The 200-d word embedding is shared at https://1drv.ms/u/s!AtcxwlQuQjw1jF0bjeaKHEUNwitA . The shared file is a list has 3 elements, one of which is a word2vec file. Please Download it and replace the input path (Training data) in my scripy. 
+
+Tensorflow resources:
+
+The tensorflow code requires several data set, which has been uploaded on the following path:
+
+Resource file: https://1drv.ms/u/s!AtcxwlQuQjw1jGn5kPzsH03lnG6U 
+
+Worddict file: https://1drv.ms/u/s!AtcxwlQuQjw1jGrCjg8liK1wE-N9
+
+Requirement: tensorflow>=1.3
+
+
 ## Reference
 Please cite our paper if you use the data or code in this repos.
 
