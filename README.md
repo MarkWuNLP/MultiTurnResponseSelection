@@ -17,8 +17,7 @@ We release Douban Conversation Corpus, comprising a training data set, a develop
 The test data contains 1000 dialogue context, and for each context we create 10 responses as candidates. We recruited three labelers to judge if a candidate is a proper response to the session. A proper response means the response can naturally reply to the message given the context. Each pair received three labels and the majority of the labels was taken as the final decision.
 
 <br>
-As far as we known, this is the first human-labeled test set for retrieval-based chatbots. 
-Location：https://www.dropbox.com/s/90t0qtji9ow20ca/DoubanConversaionCorpus.zip?dl=0
+As far as we known, this is the first human-labeled test set for retrieval-based chatbots. Please email me (wumark@126.com) if you need the entire corpus, and write your name, affiliation, and purpose. 
 
 
 ## Data template
